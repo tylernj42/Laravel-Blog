@@ -17,6 +17,11 @@
   </head>
   <body>
     @include('partials.navigation')
+    @if($flash = session('message'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+            {{ $flash }}
+        </div>
+    @endif
     <div class="blog-header">
       <div class="container">
         <h1 class="blog-title">The Bootstrap Blog</h1>

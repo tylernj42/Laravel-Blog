@@ -9,7 +9,7 @@ class PostsController extends Controller
     public function __construct(){
         $this->middleware('auth')->except(['index', 'show']);
     }
-    public function index(){
+    public function index(\App\Tag $tag = null){
         $posts = \App\Post::latest()
             ->filter(request(['month', 'year']))
             ->get();

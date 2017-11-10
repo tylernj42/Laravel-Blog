@@ -3,10 +3,17 @@
 @section('content')
     <div class="col-sm-8 blog-main">
         <div class="blog-post">
-            <h2 class="blog-post-title">
-                <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-            </h2>
+            <h1 class="blog-post-title">{{ $post->title }}</h1>
             <p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }}</p>
+            @if(count($post->tags))
+                <ul class="list-inline">
+                    @foreach($post->tags as $tag)
+                        <li>
+                            <a href="/posts/tags/{{ $tag->name }}">{{ $tag->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
             <p>{{ $post->body }}</p>
             @if(count($post->comments) > 0)
                 <hr>
